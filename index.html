@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'self'; style-src 'self' 'unsafe-inline'; img-src 'self' data: blob:; font-src 'self'; media-src 'self' data: blob:; connect-src 'self' data: blob:; worker-src 'self' blob:; manifest-src 'self'; form-action 'none'; base-uri 'none'; object-src 'none'">
+<meta name="referrer" content="no-referrer">
+<title>CSS Units — Free px to rem, em, pt, vw Converter &amp; clamp() Generator | S3eidat Tools</title>
+<meta name="description" content="Convert between px, rem, em, pt, vw, vh and % with your own base font size and viewport. Table of common sizes and a fluid typography clamp() generator with live preview. Free, private, runs in your browser.">
+<meta property="og:title" content="CSS Units — px, rem, em, pt and vw converter">
+<meta property="og:description" content="CSS unit converter and fluid clamp() generator. Runs 100% in your browser.">
+<link rel="icon" href="kit/icon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="kit/kit.css">
+<link rel="stylesheet" href="app.css">
+<script src="kit/kit.js"></script>
+<!--s3:seo-->
+<link rel="canonical" href="https://s3eidat.github.io/css-units/">
+<link rel="manifest" href="manifest.webmanifest">
+<meta name="theme-color" content="#0d0f12">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="S3eidat Tools">
+<meta property="og:url" content="https://s3eidat.github.io/css-units/">
+<meta property="og:image" content="https://s3eidat.github.io/css-units/screenshot.png">
+<meta property="og:image:width" content="1280"><meta property="og:image:height" content="800">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="CSS Units — px, rem, em, pt and vw converter">
+<meta name="twitter:description" content="px, rem, em, pt and vw converter. Free, private and runs 100% in your browser: no sign-up, no uploads.">
+<meta name="twitter:image" content="https://s3eidat.github.io/css-units/screenshot.png">
+<script type="application/ld+json">{"@context": "https://schema.org", "@type": "WebApplication", "name": "CSS Units", "url": "https://s3eidat.github.io/css-units/", "description": "px, rem, em, pt and vw converter. Free, private and runs 100% in your browser: no sign-up, no uploads.", "applicationCategory": "UtilitiesApplication", "operatingSystem": "Any (web browser)", "isAccessibleForFree": true, "offers": {"@type": "Offer", "price": "0", "priceCurrency": "USD"}, "image": "https://s3eidat.github.io/css-units/screenshot.png", "author": {"@type": "Person", "name": "s3eidat", "url": "https://github.com/s3eidat"}}</script>
+<!--/s3:seo-->
+</head>
+<body data-tool="css-units">
+<main class="s3-main">
+  <section class="s3-hero">
+    <h1>CSS Units</h1>
+    <p>Convert px, rem, em, pt, vw, vh and % with your own base size and viewport, and build fluid <code>clamp()</code> font sizes with a live preview.</p>
+  </section>
+
+  <section class="card stack">
+    <h2>Context</h2>
+    <div class="grid-4 cu-ctx">
+      <label class="field">Root font size (px)
+        <input class="input" id="root" type="number" min="1" step="any" value="16">
+      </label>
+      <label class="field">Parent font size (px, for em and %)
+        <input class="input" id="parent" type="number" min="1" step="any" value="16">
+      </label>
+      <label class="field">Viewport width (px)
+        <input class="input" id="vw" type="number" min="1" step="any" value="1440">
+      </label>
+      <label class="field">Viewport height (px)
+        <input class="input" id="vh" type="number" min="1" step="any" value="900">
+      </label>
+    </div>
+  </section>
+
+  <section class="card stack mt">
+    <h2>Convert</h2>
+    <div class="row cu-conv">
+      <label class="field grow">Value
+        <input class="input cu-big" id="val" type="number" step="any" value="24">
+      </label>
+      <label class="field">Unit
+        <select class="select cu-big" id="unit"></select>
+      </label>
+    </div>
+    <div class="cu-res" id="res"></div>
+  </section>
+
+  <section class="card stack mt">
+    <div class="row between">
+      <h2>Fluid typography <code>clamp()</code></h2>
+      <div class="seg" id="cunit" role="group" aria-label="Output unit">
+        <button aria-pressed="true" data-v="rem">rem</button>
+        <button aria-pressed="false" data-v="px">px</button>
+      </div>
+    </div>
+    <div class="grid-4 cu-ctx">
+      <label class="field">Smallest size (px)
+        <input class="input" id="minSize" type="number" min="0" step="any" value="16">
+      </label>
+      <label class="field">Largest size (px)
+        <input class="input" id="maxSize" type="number" min="0" step="any" value="32">
+      </label>
+      <label class="field">From viewport (px)
+        <input class="input" id="minVp" type="number" min="0" step="any" value="320">
+      </label>
+      <label class="field">To viewport (px)
+        <input class="input" id="maxVp" type="number" min="0" step="any" value="1280">
+      </label>
+    </div>
+    <div class="row cu-clamp">
+      <code class="cu-code grow" id="clamp"></code>
+      <button class="btn small" id="copyClamp"><svg class="i"><use href="#i-copy"/></svg>Copy CSS</button>
+    </div>
+    <div class="cu-prev">
+      <label class="field"><span>Preview at viewport width <span class="mono cu-pvl" id="pvLabel"></span></span>
+        <input type="range" id="pv" min="320" max="1920" step="1" value="800">
+      </label>
+      <svg class="cu-chart" id="chart" viewBox="0 0 600 170" role="img" aria-label="Font size across viewport widths"></svg>
+      <div class="cu-sample" id="sample" dir="auto">The quick brown fox jumps over the lazy dog</div>
+    </div>
+  </section>
+
+  <section class="card stack mt">
+    <h2>Common sizes <small id="tblInfo"></small></h2>
+    <div class="tbl-wrap"><table class="tbl" id="tbl"></table></div>
+  </section>
+</main>
+<script src="app.js"></script>
+</body>
+</html>

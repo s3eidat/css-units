@@ -1,0 +1,30 @@
+.grid-4 { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 760px) { .grid-4 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.cu-ctx .field { align-content: end; }
+.cu-conv { align-items: flex-end; }
+.cu-conv .field:last-child { width: 240px; }
+.cu-big { font-size: 18px; height: 48px; }
+.cu-res { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 8px; }
+.cu-item { display: grid; gap: 2px; text-align: left; padding: 10px 12px; border-radius: 12px; background: var(--surface-2); border: 1px solid var(--line); min-width: 0; transition: border-color var(--dur), background var(--dur); }
+.cu-item:hover { border-color: var(--accent); background: var(--accent-soft); }
+.cu-item.is-src { border-color: var(--accent); }
+.cu-v { font-family: var(--mono); font-size: 16px; font-weight: 600; color: var(--text); overflow-wrap: anywhere; }
+.cu-k { font-size: 11.5px; color: var(--text-3); }
+.cu-clamp { align-items: center; }
+.cu-code { display: block; padding: 12px 14px; border-radius: 12px; font-size: 14px; color: var(--accent); background: var(--surface-2); border: 1px solid var(--line); overflow-wrap: anywhere; }
+.cu-code.bad { color: var(--danger); }
+.cu-prev { display: grid; gap: 10px; }
+.cu-chart { width: 100%; height: auto; max-height: 220px; background: var(--surface-2); border: 1px solid var(--line); border-radius: 12px; }
+.cu-axis { stroke: var(--line-strong); stroke-width: 1; }
+.cu-grid { stroke: var(--line); stroke-dasharray: 4 4; }
+.cu-line { fill: none; stroke: var(--accent); stroke-width: 2.5; stroke-linejoin: round; }
+.cu-now { stroke: var(--text-3); stroke-dasharray: 3 3; }
+.cu-dot { fill: var(--accent); stroke: var(--surface); stroke-width: 2; }
+.cu-lbl { fill: var(--text-3); font-size: 11px; font-family: var(--font); }
+.cu-lbl-now { fill: var(--text); font-weight: 600; }
+.cu-sample { padding: 14px 16px; border-radius: 12px; border: 1px dashed var(--line-strong); line-height: 1.25; font-weight: 650; letter-spacing: -.01em; overflow-wrap: anywhere; min-height: 64px; }
+#tbl td { cursor: pointer; }
+#tbl td:hover { color: var(--accent); }
+#tbl .cu-strong { font-weight: 700; }
+@media (max-width: 560px) { .cu-conv .field:last-child { width: 100%; } }
+.cu-pvl { color: var(--accent); }
